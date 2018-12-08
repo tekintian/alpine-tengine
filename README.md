@@ -2,6 +2,24 @@
 
 
 
+## 默认路径
+
+- 自定义主机配置文件夹
+
+  /etc/nginx/conf.d/
+
+
+
+- 默认主机配置文件路径  
+
+  /etc/nginx/conf.d/default.conf
+
+
+
+- nginx配置文件路径 
+
+   /etc/nginx/nginx.conf
+
 
 
 ## 与mysql/mariadb数据库与PHP容器联合使用 示例：
@@ -20,6 +38,35 @@ docker run --name tengine -it -d --link phpaf:php -v /Bitbucket/tools/Alpine/alp
 
 
 
+
+## 单独运行 Alpine Tengine 容器
+
+```shell
+# 如果需要单独运行本容器，需要使用自定义的 default.conf 配置文件覆盖容器默认的配置文件才能运行
+docker run --name tengine -it -d  -v /localPath/default.conf:/etc/nginx/conf.d/default.conf -v /LocalApp:/var/www -p 80:80 -p 443:443 tekintian/alpine-tengine
+```
+
+
+
+当度运行 Tengine 容器示例 default.conf 文件
+
+~~~conf
+server {
+    listen 80;
+    server_name _;
+    root /var/www/html;
+    index index.html index.htm default.html;
+#error page
+    error_page 404             /404.html;
+    error_page 500 502 503 504 /50x.html;
+
+    #静态资源缓存配置
+    location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ { expires 30d;  access_log off; }
+    location ~ .*\.(js|css)?$ { expires 7d; access_log off; }
+    location ~ /\.ht { deny all; }
+  }
+
+~~~
 
 
 
