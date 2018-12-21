@@ -5,13 +5,9 @@
 # @tengineTENGINE_VERSION  http://tengine.taobao.org/download.html
 #
 
-FROM tekintian/alpine:3.8
+FROM tekintian/alpine:3.8-B20181221
 
 LABEL maintainer="TekinTian <tekintian@gmail.com>"
-
-#set TimeZone
-ARG TZ="Asia/Shanghai"
-ENV TZ ${TZ}
 
 #Tengine http://tengine.taobao.org/download.html
 ENV TENGINE_VERSION 2.2.3
@@ -102,8 +98,6 @@ RUN \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log \
 # Remove unneeded packages/files
 	&& apk del .build-deps \
-	&& ln -sf /usr/share/zoneinfo/${TZ} /etc/localtime \
-	&& echo ${TZ} > /etc/timezone \
 	&& rm -rf ~/* ~/.git ~/.gitignore ~/.travis.yml ~/.ash_history \
 	&& rm -rf /tmp/* \
 	&& rm -rf /var/cache/apk/*
@@ -114,7 +108,7 @@ COPY nginx.conf /etc/nginx/nginx.conf
 COPY fastcgi.conf /etc/nginx/fastcgi.conf
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf
 
-VOLUME {/var/www,/home/wwwroot}
+VOLUME /var/www
 
 WORKDIR /var/www
 
