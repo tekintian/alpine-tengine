@@ -12,6 +12,8 @@ LABEL maintainer="TekinTian <tekintian@gmail.com>"
 #Tengine http://tengine.taobao.org/download.html
 ENV TENGINE_VERSION 2.2.3
 
+COPY /zoneinfo/* /usr/share/zoneinfo/
+
 # build persistent deps
 # persistent / runtime deps
 RUN apk add --no-cache --virtual .persistent-deps \
@@ -98,6 +100,11 @@ RUN \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log \
 # Remove unneeded packages/files
 	&& apk del .build-deps \
+	&& rm -rf /etc/localtime \
+    &&  mkdir -p /usr/share/zoneinfo/Asia \
+    && ln -s /usr/share/zoneinfo/PRC /etc/localtime \
+    && ln -s /usr/share/zoneinfo/PRC /usr/share/zoneinfo/Asia/Shanghai \
+    && echo "Asia/Shanghai" > /etc/timezone \
 	&& rm -rf ~/* ~/.git ~/.gitignore ~/.travis.yml ~/.ash_history \
 	&& rm -rf /tmp/* \
 	&& rm -rf /var/cache/apk/*
