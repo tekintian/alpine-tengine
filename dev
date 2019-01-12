@@ -1,0 +1,38 @@
+apk add --no-cache gcc libc-dev make openssl-dev pcre-dev zlib-dev linux-headers curl gnupg1 libxslt-dev gd-dev geoip-dev
+
+
+
+./configure --prefix=/usr/local/tengine --sbin-path=/usr/local/tengine/sbin/nginx --error-log-path=/var/log/nginx/error.log  --http-log-path=/var/log/nginx/access.log  --pid-path=/var/run/nginx.pid  --lock-path=/var/run/nginx.lock  --http-client-body-temp-path=/var/cache/nginx/client_temp  --http-proxy-temp-path=/var/cache/nginx/proxy_temp  --http-fastcgi-temp-path=/var/cache/nginx/fastcgi_temp  --http-uwsgi-temp-path=/var/cache/nginx/uwsgi_temp  --http-scgi-temp-path=/var/cache/nginx/scgi_temp  --user=www-data  --group=www-data  --with-http_ssl_module  --with-http_gzip_static_module  --with-http_v2_module --with-http_realip_module --with-http_flv_module --with-http_mp4_module --with-http_gunzip_module --with-threads --with-http_concat_module=shared --with-http_sysguard_module=shared --with-pcre-jit --with-jemalloc=/usr/lib/  --with-debug
+
+
+
+
+Configuration summary
+  + using threads
+  + using system PCRE library
+  + using system OpenSSL library
+  + md5: using OpenSSL library
+  + sha1: using OpenSSL library
+  + using system zlib library
+  + using jemalloc library: /usr/lib/
+
+  nginx path prefix: "/usr/local/tengine"
+  nginx binary file: "/usr/local/tengine/sbin/nginx"
+  nginx configuration prefix: "/usr/local/tengine/conf"
+  nginx configuration file: "/usr/local/tengine/conf/nginx.conf"
+  nginx pid file: "/var/run/nginx.pid"
+  nginx error log file: "/var/log/nginx/error.log"
+  nginx http access log file: "/var/log/nginx/access.log"
+  nginx http client request body temporary files: "/var/cache/nginx/client_temp"
+  nginx dso module path: "/usr/local/tengine/modules/"
+  nginx http proxy temporary files: "/var/cache/nginx/proxy_temp"
+  nginx http fastcgi temporary files: "/var/cache/nginx/fastcgi_temp"
+  nginx http uwsgi temporary files: "/var/cache/nginx/uwsgi_temp"
+  nginx http scgi temporary files: "/var/cache/nginx/scgi_temp"
+
+
+
+
+
+
+

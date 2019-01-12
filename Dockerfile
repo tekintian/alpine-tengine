@@ -93,8 +93,8 @@ RUN \
 	&& make install \
 	&& chown www-data:www-data /var/log/nginx \
 	&& chmod 750 /var/log/nginx \
-	&& install -d /var/lib/nginx /var/www/html \
-	&& chown www-data:www-data /var/www/html) \
+	&& install -d /var/lib/nginx /var/www/public \
+	&& chown www-data:www-data /var/www/public) \
 # forward request and error logs to docker log collector
 	&& ln -sf /dev/stdout /var/log/nginx/access.log \
 	&& ln -sf /dev/stderr /var/log/nginx/error.log \
@@ -109,8 +109,8 @@ RUN \
 	&& rm -rf /tmp/* \
 	&& rm -rf /var/cache/apk/*
 
-COPY html/tz.php /var/www/html/tz.php
-COPY html/index.html /var/www/html/index.html
+COPY public/tz.php /var/www/public/tz.php
+COPY public/index.html /var/www/public/index.html
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY fastcgi.conf /etc/nginx/fastcgi.conf
 COPY nginx.vh.default.conf /etc/nginx/conf.d/default.conf

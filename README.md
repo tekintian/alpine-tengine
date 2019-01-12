@@ -49,7 +49,7 @@ docker run --name tengine -it -d  -v /localPath/default.conf:/etc/nginx/conf.d/d
 server {
     listen 80;
     server_name _;
-    root /var/www/html;
+    root /var/www/public;
     index index.html index.htm default.html;
 #error page
     error_page 404             /404.html;
