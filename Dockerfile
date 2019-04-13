@@ -5,12 +5,12 @@
 # @tengineTENGINE_VERSION  http://tengine.taobao.org/download.html
 #
 
-FROM tekintian/alpine:3.8-B20181221
+FROM tekintian/alpine:3.8
 
 LABEL maintainer="TekinTian <tekintian@gmail.com>"
 
 #Tengine http://tengine.taobao.org/download.html
-ENV TENGINE_VERSION 2.2.3
+ENV TENGINE_VERSION 2.3.0
 
 COPY /zoneinfo/* /usr/share/zoneinfo/
 
